@@ -34,11 +34,11 @@ public class CommandResult {
     }
 
 	/**
-	 * Returns the feedback message to be shown to the user.
+	 * Gets the feedback message to be shown to the user.
 	 * @return the feedbackToUser
 	 */
 	public String getFeedbackToUser() {
-		return feedbackToUser;
+		return this.feedbackToUser;
 	}
 
 }
