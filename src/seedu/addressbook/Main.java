@@ -106,12 +106,17 @@ public class Main {
         try {
             command.setData(addressBook, lastShownList);
             CommandResult result = command.execute();
+            storage.checkStorageFileExist();
             storage.save(addressBook);
             return result;
+        } catch (StorageFileDeletedException sfde) {
+        	ui.showToUser(sfde.getMessage());
+        	exit();
+        	return null;
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);
-        }
+        } 
     }
 
     /**

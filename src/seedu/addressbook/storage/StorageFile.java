@@ -2,6 +2,7 @@ package seedu.addressbook.storage;
 
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.exception.StorageFileDeletedException;
 import seedu.addressbook.storage.jaxb.AdaptedAddressBook;
 
 import javax.xml.bind.JAXBContext;
@@ -9,6 +10,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -34,11 +36,20 @@ public class StorageFile {
     }
 
     /**
-     * Signals that some error has occured while trying to convert and read/write data between the application
+     * Signals that some error has occurred while trying to convert and read/write data between the application
      * and the storage file.
      */
     public static class StorageOperationException extends Exception {
         public StorageOperationException(String message) {
+            super(message);
+        }
+    }
+    
+    /**
+     * Signals that user deletes the storage file while the AddressBook program is running.
+     */
+    public static class StorageFileDeletedException extends Exception {
+        public StorageFileDeletedException(String message) {
             super(message);
         }
     }
@@ -69,6 +80,17 @@ public class StorageFile {
             throw new InvalidStorageFilePathException("Storage file should end with '.txt'");
         }
     }
+    
+    /** 
+     * Checks if storage file exists.
+     * 
+     * @throws StorageFileDeletedException if storage file is deleted while application is running
+     */
+    public void checkStorageFileExist() throws StorageFileDeletedException {
+    	if (!Files.exists(path)) {
+    		throw new StorageFileDeletedException("Storage file is deleted.");
+    	}
+    }
 
     /**
      * Returns true if the given path is acceptable as a storage file.
@@ -90,8 +112,7 @@ public class StorageFile {
          */
         try (final Writer fileWriter =
                      new BufferedWriter(new FileWriter(path.toFile()))) {
-
-            final AdaptedAddressBook toSave = new AdaptedAddressBook(addressBook);
+        	final AdaptedAddressBook toSave = new AdaptedAddressBook(addressBook);
             final Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             marshaller.marshal(toSave, fileWriter);
@@ -100,7 +121,7 @@ public class StorageFile {
             throw new StorageOperationException("Error writing to file: " + path);
         } catch (JAXBException jaxbe) {
             throw new StorageOperationException("Error converting address book into storage format");
-        }
+        } 
     }
 
     /**
