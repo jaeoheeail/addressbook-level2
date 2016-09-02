@@ -21,6 +21,8 @@ public class Address {
     private static final int ADDRESS_UNIT_INDEX = 2;
     private static final int ADDRESS_POSTAL_CODE_INDEX = 3;
     
+    private static final int NUM_ADDRESS_FIELDS = 4;
+    
     public static final String ADDRESS_VALIDATION_REGEX = ".+,.+,.+,.+";
     private static final String ADDRESS_BLOCK_VALIDATION_REGEX = "\\d+";
     private static final String ADDRESS_STREET_VALIDATION_REGEX = ".+";	
@@ -67,7 +69,7 @@ public class Address {
      * Returns true if a given string is a valid person address.
      */
     private boolean isValidAddressFields(String[] addressFields) {
-    	if (addressFields.length == 4) {
+    	if (addressFields.length == NUM_ADDRESS_FIELDS) {
     		String testBlock = addressFields[ADDRESS_BLOCK_INDEX];
     		String testStreet = addressFields[ADDRESS_STREET_INDEX];
     		String testUnit = addressFields[ADDRESS_UNIT_INDEX];
