@@ -3,6 +3,7 @@ package seedu.addressbook.data.person;
 import seedu.addressbook.data.tag.Tag;
 import seedu.addressbook.data.tag.UniqueTagList;
 
+
 /**
  * A read-only immutable interface for a Person in the addressbook.
  * Implementations should guarantee: details are present and not null, field values are validated.
@@ -64,17 +65,27 @@ public interface ReadOnlyPerson {
     /**
      * Formats a person as text, showing only non-private contact details.
      */
-    default String getAsTextHidePrivate() {
+    default String getAsTextHidePrivate(String personDetails) {
+    	
+    	int phoneIndex = personDetails.indexOf("Phone: ");
+    	int emailIndex = personDetails.indexOf("Email: ");
+    	int addressIndex = personDetails.indexOf("Address: ");
+    	
+    	String[] splitDetails = {personDetails.substring(phoneIndex, emailIndex).trim(),
+    			personDetails.substring(emailIndex, addressIndex).trim(),
+    			personDetails.substring(addressIndex, personDetails.length())
+    			};
+    	
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
         if (!getPhone().isPrivate()) {
-            builder.append(" Phone: ").append(getPhone());
+            builder.append(" " + splitDetails[0]);
         }
         if (!getEmail().isPrivate()) {
-            builder.append(" Email: ").append(getEmail());
+            builder.append(" "+ splitDetails[1]);
         }
         if (!getAddress().isPrivate()) {
-            builder.append(" Address: ").append(getAddress());
+            builder.append(" " + splitDetails[2]);
         }
         builder.append(" Tags: ");
         for (Tag tag : getTags()) {
@@ -82,4 +93,5 @@ public interface ReadOnlyPerson {
         }
         return builder.toString();
     }
+    
 }
