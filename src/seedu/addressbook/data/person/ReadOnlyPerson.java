@@ -37,6 +37,7 @@ public interface ReadOnlyPerson {
      * Formats the person as text, showing all contact details.
      */
     default String getAsTextShowAll() {
+    	   	    	
         final StringBuilder builder = new StringBuilder();
         final String detailIsPrivate = "(private) ";
         builder.append(getName())
@@ -66,15 +67,8 @@ public interface ReadOnlyPerson {
      * Formats a person as text, showing only non-private contact details.
      */
     default String getAsTextHidePrivate(String personDetails) {
-    	
-    	int phoneIndex = personDetails.indexOf("Phone: ");
-    	int emailIndex = personDetails.indexOf("Email: ");
-    	int addressIndex = personDetails.indexOf("Address: ");
-    	
-    	String[] splitDetails = {personDetails.substring(phoneIndex, emailIndex).trim(),
-    			personDetails.substring(emailIndex, addressIndex).trim(),
-    			personDetails.substring(addressIndex, personDetails.length())
-    			};
+    	    	
+    	String[] splitDetails = splitDetails(personDetails);
     	
         final StringBuilder builder = new StringBuilder();
         builder.append(getName());
@@ -94,4 +88,18 @@ public interface ReadOnlyPerson {
         return builder.toString();
     }
     
+    /**
+     * Splits phone, email and address from person details string to string array.
+     */
+    default String[] splitDetails(String personDetails) {
+    	int phoneIndex = personDetails.indexOf("Phone: ");
+    	int emailIndex = personDetails.indexOf("Email: ");
+    	int addressIndex = personDetails.indexOf("Address: ");
+    	
+    	String[] splitDetails = {personDetails.substring(phoneIndex, emailIndex).trim(),
+    			personDetails.substring(emailIndex, addressIndex).trim(),
+    			personDetails.substring(addressIndex, personDetails.length())
+    			};
+    	return splitDetails;
+    }
 }
