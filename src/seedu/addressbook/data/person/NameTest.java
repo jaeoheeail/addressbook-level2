@@ -22,6 +22,9 @@ public class NameTest {
 		
 		// random name
 		assertFalse(tester.isSimilar(new Name("aaa")));
+		
+		// same name
+		assertTrue(tester.isSimilar(new Name("Tester")));
 	}
 
 }
