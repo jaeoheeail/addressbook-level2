@@ -82,8 +82,8 @@ public class Name {
 					if (this.fullName.toLowerCase().contains(o)) {
 						result = true;
 					}
-					return result;
 				}
+				return result;
 			}
 		}
 		return false;

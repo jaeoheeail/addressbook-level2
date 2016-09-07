@@ -45,6 +45,9 @@ public class NameTest {
 		assertTrue(person.isSimilar(new Name("K JOHn")));
 		assertTrue(person.isSimilar(new Name("K smiTh JOHn")));
 		
+		// different name with substring
+		assertTrue(person.isSimilar(new Name("JOHNervan Smith")));
+		
 	}
 
 }
