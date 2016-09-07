@@ -30,6 +30,10 @@ public class NameTest {
 		
 		// case-insensitive
 		assertTrue(person.isSimilar(new Name("John K SMITh")));
+		
+		// single word substring
+		assertTrue(person.isSimilar(new Name("Smith")));
+		
 	}
 
 }

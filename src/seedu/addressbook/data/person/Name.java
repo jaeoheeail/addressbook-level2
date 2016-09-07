@@ -71,7 +71,9 @@ public class Name {
 				return true;
 			} else if (this.fullName.toLowerCase().equals(other.fullName.toLowerCase())) {
 				return true;
-			}
+			} else if (this.fullName.toLowerCase().contains(other.fullName.toLowerCase())) {
+				return true;
+			} 
 		}
 		return false;
 	}
