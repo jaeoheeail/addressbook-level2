@@ -63,7 +63,9 @@ public class Name {
 
 	/**
 	 * Returns true of the other name is very similar to this name.
-	 * Two names are considered similar if ...
+	 * Two names are considered similar if:
+	 * 1. They are both equal
+	 * 2. Other name is a subset of this name
 	 */
 	public boolean isSimilar(Name other) {
 		if (other != null) {
@@ -73,7 +75,16 @@ public class Name {
 				return true;
 			} else if (this.fullName.toLowerCase().contains(other.fullName.toLowerCase())) {
 				return true;
-			} 
+			} else  {
+				String[] splitOther = other.fullName.toLowerCase().split(" ");
+				boolean result = false;
+				for (String o: splitOther) {
+					if (this.fullName.toLowerCase().contains(o)) {
+						result = true;
+					}
+					return result;
+				}
+			}
 		}
 		return false;
 	}

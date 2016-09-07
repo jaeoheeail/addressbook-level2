@@ -34,6 +34,8 @@ public class NameTest {
 		// single word substring
 		assertTrue(person.isSimilar(new Name("Smith")));
 		
+		// subset
+		assertTrue(person.isSimilar(new Name("John Smith")));
 	}
 
 }
