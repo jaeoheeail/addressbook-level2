@@ -9,10 +9,12 @@ import seedu.addressbook.data.exception.IllegalValueException;
 
 public class NameTest {
 	private Name tester;
+	private Name person;
 	
 	@Before
 	public void setUp() throws IllegalValueException {
 		tester = new Name("Tester");
+		person = new Name("John K Smith");
 	}
 
 	@Test
@@ -25,6 +27,9 @@ public class NameTest {
 		
 		// same name
 		assertTrue(tester.isSimilar(new Name("Tester")));
+		
+		// case-insensitive
+		assertTrue(person.isSimilar(new Name("John K SMITh")));
 	}
 
 }
