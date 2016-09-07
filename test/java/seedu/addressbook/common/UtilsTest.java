@@ -44,5 +44,26 @@ public class UtilsTest {
         		add(tempName2);
         	}
         };
-    }	
+    }
+	
+	@Test
+    public void isAnyNull_returnTrue() {
+        assertTrue(Utils.isAnyNull(hasNullObjects));
+    }
+	
+	@Test
+    public void isAnyNull_returnFalse() {
+        assertFalse(Utils.isAnyNull(testObjects));
+    }
+	
+	@Test
+	public void elementsAreUnique_returnTrue() {
+		assertTrue(Utils.elementsAreUnique(uniqueItems));
+	}
+	
+	@Test
+	public void elementsAreUnique_returnFalse() {
+		assertFalse(Utils.elementsAreUnique(repeatedItems));
+	}
+	
 }
