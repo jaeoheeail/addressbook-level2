@@ -71,10 +71,6 @@ public class Name {
 		if (other != null) {
 			if (this.equals(other)) {
 				return true;
-			} else if (this.fullName.toLowerCase().equals(other.fullName.toLowerCase())) {
-				return true;
-			} else if (this.fullName.toLowerCase().contains(other.fullName.toLowerCase())) {
-				return true;
 			} else  {
 				String[] splitOther = other.fullName.toLowerCase().split(" ");
 				boolean result = false;
