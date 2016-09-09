@@ -2,6 +2,10 @@ package seedu.addressbook.data.person;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
+/**
+ * Parent class for address, email and phone
+ * Contains methods which are used by sub classes
+ */
 public class Contact {
 		
 	public final String value;

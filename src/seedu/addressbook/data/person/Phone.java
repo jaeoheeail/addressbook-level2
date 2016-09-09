@@ -9,8 +9,8 @@ import seedu.addressbook.data.exception.IllegalValueException;
 public class Phone extends Contact {
 
     public static final String EXAMPLE = "123456789";
-    public static final String MESSAGE_PHONE_CONSTRAINTS = "Person phone numbers should only contain numbers";
-    public static final String PHONE_VALIDATION_REGEX = "\\d+";
+    private static final String MESSAGE_PHONE_CONSTRAINTS = "Person phone numbers should only contain numbers";
+    private static final String PHONE_VALIDATION_REGEX = "\\d+";
 
     /**
      * Validates given phone number.
