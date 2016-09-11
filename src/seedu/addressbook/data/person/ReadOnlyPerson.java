@@ -102,4 +102,15 @@ public interface ReadOnlyPerson {
     			};
     	return splitDetails;
     }
+    
+    /**
+     * Returns a concatenated version of the printable strings of each object.
+     */
+    static String getPrintableString(Printable... printables) {
+        String concatString = "";
+        for (Printable p : printables) {
+            concatString += p.getPrintableString() + " ";
+        }
+        return concatString.trim();
+    }
 }

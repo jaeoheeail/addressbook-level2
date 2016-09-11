@@ -2,7 +2,6 @@ package seedu.addressbook.ui;
 
 import static seedu.addressbook.common.Messages.*;
 import seedu.addressbook.commands.CommandResult;
-import seedu.addressbook.data.person.Printable;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 
 import java.io.InputStream;
@@ -135,7 +134,7 @@ public class TextUi {
     private void showPersonListView(List<? extends ReadOnlyPerson> persons) {
         final List<String> formattedPersons = new ArrayList<>();
         for (ReadOnlyPerson person : persons) {
-        	String personDetails = getPrintableString(person.getName(), person.getPhone(), person.getEmail(), person.getAddress());
+        	String personDetails = ReadOnlyPerson.getPrintableString(person.getName(), person.getPhone(), person.getEmail(), person.getAddress());
         	formattedPersons.add(person.getAsTextHidePrivate(personDetails));
         }
         showToUserAsIndexedList(formattedPersons);
@@ -166,14 +165,4 @@ public class TextUi {
         return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, listItem);
     }
     
-    /**
-     * Returns a concatenated version of the printable strings of each object.
-     */
-	public static  String getPrintableString(Printable... printables) {
-		String concatString = "";
-		for (Printable p : printables) {
-			concatString += p.getPrintableString() + " ";
-        }
-		return concatString.trim();
-	}
 }
