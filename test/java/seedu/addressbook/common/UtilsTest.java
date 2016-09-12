@@ -15,6 +15,9 @@ import seedu.addressbook.data.person.Phone;
 import org.junit.Before;
 import org.junit.Test;
 
+/*
+ * Unit tests for Utils class
+ */
 public class UtilsTest {
     private Object[] hasNullObjects;
     private Object[] testObjects;
