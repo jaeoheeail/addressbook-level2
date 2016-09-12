@@ -15,55 +15,55 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class UtilsTest {
-	private Object[] hasNullObjects;
-	private Object[] testObjects;
-	private Collection<?> uniqueItems;
-	private Collection<?> repeatedItems;
-	
-	@Before
+    private Object[] hasNullObjects;
+    private Object[] testObjects;
+    private Collection<?> uniqueItems;
+    private Collection<?> repeatedItems;
+
+    @Before
     public void setup() throws IllegalValueException {
-		Name tempName1 = new Name("John Doe");
-		Name tempName2 = new Name("John Doe");
-		Name tempName3 = new Name("Charles Dickens");
-		
-		Address tempAddress = new Address("222, beta street", false);
-		Phone tempPhone = new Phone("123456", false);
-		Email tempEmail = new Email("john@gmail.com", false);
-		
-		hasNullObjects = new Object[]{tempName1, null, tempPhone, null};
-		testObjects = new Object[]{tempName1, tempAddress, tempPhone, tempEmail};
+        Name tempName1 = new Name("John Doe");
+        Name tempName2 = new Name("John Doe");
+        Name tempName3 = new Name("Charles Dickens");
+
+        Address tempAddress = new Address("222, beta street", false);
+        Phone tempPhone = new Phone("123456", false);
+        Email tempEmail = new Email("john@gmail.com", false);
+
+        hasNullObjects = new Object[]{tempName1, null, tempPhone, null};
+        testObjects = new Object[]{tempName1, tempAddress, tempPhone, tempEmail};
         uniqueItems  = new ArrayList<Name>() {
-        	{
-        		add(tempName1);
-        		add(tempName3);
-        	}
+            {
+                add(tempName1);
+                add(tempName3);
+            }
         };
         repeatedItems = new ArrayList<Name>() {
-        	{
-        		add(tempName1);
-        		add(tempName2);
-        	}
+            {
+                add(tempName1);
+                add(tempName2);
+            }
         };
     }
-	
-	@Test
+
+    @Test
     public void isAnyNull_returnTrue() {
         assertTrue(Utils.isAnyNull(hasNullObjects));
     }
-	
-	@Test
+
+    @Test
     public void isAnyNull_returnFalse() {
         assertFalse(Utils.isAnyNull(testObjects));
     }
-	
-	@Test
-	public void elementsAreUnique_returnTrue() {
-		assertTrue(Utils.elementsAreUnique(uniqueItems));
-	}
-	
-	@Test
-	public void elementsAreUnique_returnFalse() {
-		assertFalse(Utils.elementsAreUnique(repeatedItems));
-	}
-	
+
+    @Test
+    public void elementsAreUnique_returnTrue() {
+        assertTrue(Utils.elementsAreUnique(uniqueItems));
+    }
+
+    @Test
+    public void elementsAreUnique_returnFalse() {
+        assertFalse(Utils.elementsAreUnique(repeatedItems));
+    }
+
 }
