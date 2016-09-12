@@ -8,6 +8,9 @@ import org.junit.Test;
 
 import seedu.addressbook.data.exception.IllegalValueException;
 
+/**
+ * Unit Test for Name class
+ */
 public class NameTest {
     private Name tester;
     private Name person;
